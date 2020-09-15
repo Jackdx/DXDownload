@@ -1,0 +1,6 @@
+framework module DXDownload {
+  umbrella header "DXDownload-umbrella.h"
+
+  export *
+  module * { export * }
+}

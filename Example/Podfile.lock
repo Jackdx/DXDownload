@@ -1,0 +1,16 @@
+PODS:
+  - DXDownload (0.1.0)
+
+DEPENDENCIES:
+  - DXDownload (from `../`)
+
+EXTERNAL SOURCES:
+  DXDownload:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  DXDownload: 6e68ef353cb5b91438277b7d55a6889c65275bf0
+
+PODFILE CHECKSUM: 8d5d8ee3f766b87df9bae6105368cc1bb622d0f6
+
+COCOAPODS: 1.8.4
