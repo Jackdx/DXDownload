@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'DXDownload_Example' do
+  pod 'DXDownload', :path => '../'
+
+  target 'DXDownload_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
