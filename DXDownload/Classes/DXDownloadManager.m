@@ -59,24 +59,24 @@ static NSMutableDictionary *_downloadCompletionList;
     });
 }
 
-+ (void)downloadTaskWithURL:(NSString *)url path:(NSString *)path completionHandler:(DXDownloadManagerCompletion)completionHandler {
-    [self downloadTaskWithURL:url path:path fileName:nil completionHandler:completionHandler];
++ (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSString *)url path:(NSString *)path completionHandler:(DXDownloadManagerCompletion)completionHandler {
+   return [self downloadTaskWithURL:url path:path fileName:nil completionHandler:completionHandler];
 }
 
-+ (void)downloadTaskWithURL:(NSString *)url path:(NSString *)path fileName:(nullable NSString *)fileName completionHandler:(DXDownloadManagerCompletion)completionHandler {
++ (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSString *)url path:(NSString *)path fileName:(nullable NSString *)fileName completionHandler:(DXDownloadManagerCompletion)completionHandler {
     DXDownloadmanagerProgress progress = ^(NSProgress *downloadProgress) {
         if ([downloadProgress.localizedDescription containsString:@"100%"]) NSLog(@"url ---%@, localizedDescription --- %@, localizedAdditionalDescription --- %@", url, downloadProgress.localizedDescription, downloadProgress.localizedAdditionalDescription);
     };
-    [self downloadTaskWithURL:url path:path fileName:fileName progress:progress completionHandler:completionHandler];
+   return [self downloadTaskWithURL:url path:path fileName:fileName progress:progress completionHandler:completionHandler];
 }
 
-+ (void)downloadTaskWithURL:(NSString *)url path:(NSString *)path fileName:(nullable NSString *)fileName progress:(DXDownloadmanagerProgress)progress completionHandler:(DXDownloadManagerCompletion)completionHandler {
++ (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSString *)url path:(NSString *)path fileName:(nullable NSString *)fileName progress:(DXDownloadmanagerProgress)progress completionHandler:(DXDownloadManagerCompletion)completionHandler {
     if (![url isNonEmpty] || ![path isNonEmpty]) {
         completionHandler(nil, nil, [NSError new]);
     }
     [self saveDownloadCompletion:completionHandler url:url];
-    if ([self isDownlongdingWithUrl:url]) return;
-    NSURLSessionDownloadTask *task;
+    if ([self isDownlongdingWithUrl:url]) return nil;
+    NSURLSessionDownloadTask *task = nil;
     NSData *resumeData = [self getResumeDataWithUrl:url];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
     DXDownloadManagerDestination destinationBlock = ^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
@@ -125,6 +125,7 @@ static NSMutableDictionary *_downloadCompletionList;
     [self saveDownloadingWithUrl:url];
     [self saveTask:task url:url];
     [task resume];
+    return task;
 }
 
 + (void)saveTask:(NSURLSessionDownloadTask *)task url:(NSString *)url {

@@ -16,9 +16,9 @@ typedef void(^DXDownloadManagerCompletion)(NSURLResponse * _Nullable response, N
 
 @interface DXDownloadManager : NSObject
 
-+ (void)downloadTaskWithURL:(NSString *)url path:(NSString *)path completionHandler:(DXDownloadManagerCompletion)completionHandler;
-+ (void)downloadTaskWithURL:(NSString *)url path:(NSString *)path fileName:(nullable NSString *)fileName completionHandler:(DXDownloadManagerCompletion)completionHandler;
-+ (void)downloadTaskWithURL:(NSString *)url path:(NSString *)path fileName:(nullable NSString *)fileName progress:(DXDownloadmanagerProgress)progress completionHandler:(DXDownloadManagerCompletion)completionHandler;
++ (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSString *)url path:(NSString *)path completionHandler:(DXDownloadManagerCompletion)completionHandler;
++ (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSString *)url path:(NSString *)path fileName:(nullable NSString *)fileName completionHandler:(DXDownloadManagerCompletion)completionHandler;
++ (NSURLSessionDownloadTask *)downloadTaskWithURL:(NSString *)url path:(NSString *)path fileName:(nullable NSString *)fileName progress:(DXDownloadmanagerProgress)progress completionHandler:(DXDownloadManagerCompletion)completionHandler;
 
 @end
 
