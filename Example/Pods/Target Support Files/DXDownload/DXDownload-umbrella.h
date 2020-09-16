@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "DXCache.h"
+#import "DXDownloadManager.h"
+#import "NSString+Addition.h"
 
 FOUNDATION_EXPORT double DXDownloadVersionNumber;
 FOUNDATION_EXPORT const unsigned char DXDownloadVersionString[];
