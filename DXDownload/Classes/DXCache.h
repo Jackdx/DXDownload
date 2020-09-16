@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "TMCache.h"
+#import <TMCache/TMCache.h>
+
 
 NS_ASSUME_NONNULL_BEGIN
 
